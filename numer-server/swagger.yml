@@ -1,0 +1,268 @@
+swagger: "2.0"
+info:
+  description: "This is swagger Numer project from Panupong nu"
+  version: "1.0.0"
+  title: "Swagger numer project lover"
+host: "localhost:1337"
+basePath: ""
+tags:
+- name: "user"
+  description: "Operations about user"
+  externalDocs:
+    description: "Find out more about our store"
+- name: "Root"
+  description: "Root of equation"
+schemes:
+- "http"
+
+paths:
+  /api:
+    get:
+      tags:
+      - "user"
+      summary: "Finds Pets by status"
+      description: "Multiple status values can be provided with comma separated strings"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        description: "Status values that need to be considered for filter"
+        type: "array"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid status value"
+      security:
+      - api_key: []
+
+  /api/register:
+    post:
+      tags:
+      - "user"
+      summary: "Register user"
+      description: "Register user to mongodb"
+      operationId: "registerUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Register user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+  
+  /api/login:
+    post:
+      tags:
+      - "user"
+      summary: "login user"
+      description: "Login user to mongodb"
+      operationId: "loginUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Login user object"
+        required: true
+        schema:
+          $ref: "#/definitions/Login"
+      responses:
+        default:
+          description: "successful operation"
+    
+  /api/root/Bisection:
+    post:
+      tags:
+      - "Root"
+      summary: "Bisection"
+      description: "Add new Bisection"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/BiFalse"
+      responses:
+        "405":
+          description: "Invalid input"
+      security:
+      - api_key: []
+
+  /api/root/False:
+    post:
+      tags:
+      - "Root"
+      summary: "False Position"
+      description: "Add new False Position"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Put False Position Equation xl xr and finish error and x"
+        required: true
+        schema:
+          $ref: "#/definitions/BiFalse"
+      responses:
+        "405":
+          description: "Invalid input"
+      security:
+      - api_key: []
+
+  /api/root/onepoint:
+    post:
+      tags:
+      - "Root"
+      summary: "onepoint"
+      description: "Add new onepoint"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Put onepoint Equation  and finish error and x"
+        required: true
+        schema:
+          $ref: "#/definitions/OneNewSe"
+      responses:
+        "405":
+          description: "Invalid input"
+      security:
+      - api_key: []
+
+  /api/root/newton:
+    post:
+      tags:
+      - "Root"
+      summary: "newton"
+      description: "Add new newton"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Put newton Equation  and finish error and x"
+        required: true
+        schema:
+          $ref: "#/definitions/OneNewSe"
+      responses:
+        "405":
+          description: "Invalid input"
+      security:
+      - api_key: []
+
+  /api/root/secant:
+    post:
+      tags:
+      - "Root"
+      summary: "secant"
+      description: "Add new secant"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Put secant Equation  and finish error and x"
+        required: true
+        schema:
+          $ref: "#/definitions/OneNewSe"
+      responses:
+        "405":
+          description: "Invalid input"
+      security:
+      - api_key: []
+
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "x-access-token"
+    in: "header"
+definitions:
+  User:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+    xml:
+      name: "User"
+
+  Login:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      password:
+        type: "string"
+    xml:
+      name: "Login"
+
+  BiFalse:
+    type: "object"
+    properties:
+      eq:
+        type: "string"
+      xl:
+        type: "integer"
+        format: "int64"
+      xr:
+        type: "integer"
+        format: "int64"
+      er:
+        type: "integer"
+        format: "int32"
+      xm:
+        type: "integer"
+        format: "int32"
+    xml:
+      name: "Bisection and False position"
+
+  OneNewSe:
+    type: "object"
+    properties:
+      eq:
+        type: "string"
+      er:
+        type: "integer"
+        format: "int32"
+      x:
+        type: "integer"
+        format: "int32"
+    xml:
+      name: "onepoint and newton and secant"

@@ -1,0 +1,148 @@
+/**
+ * @swagger
+ * /api:
+ *   get:
+ *     description: All record
+ *     security:
+ *      - ApiKeyAuth: []
+ *      - OAuth2: [admin]
+ *     responses:
+ *       200:
+ *         description: Returns all the record
+ */
+
+/**
+ * @swagger
+ *
+ * /test:
+ *   get:
+ *     description: All record
+ *     responses:
+ *       200:
+ *         description: Returns all the record
+ */
+
+/**
+ * @swagger
+ * /test:
+ *   post:
+ *     parameters:
+ *      - in: body
+ *        name: catchphrase
+ *        description: New catchphrase
+ *        schema:
+ *          type: object
+ *          properties:
+ *            movieName:
+ *              type: string
+ *            catchphrase:
+ *              type: string
+ *            movieContext:
+ *              type: string
+ *     responses:
+ *       201:
+ *         description: Created
+ */
+
+/**
+ * @swagger
+ * /users:
+ *  get:
+ *    security:              # <--- ADD THIS
+ *      - bearerAuth: []     # <--- ADD THIS
+ *    tags:
+ *      - Users
+ *    description: Returns a single person based on their JWT token
+ *    produces:
+ *      - application/json
+ *    responses:
+ *      200:
+ *        description: A single person
+ */
+
+/**
+ * @swagger
+ * /api/register:
+ *   post:
+ *     parameters:
+ *      - in: body
+ *        name: Register
+ *        description: Register user
+ *        schema:
+ *          type: object
+ *          properties:
+ *            name:
+ *              type: string
+ *            email:
+ *              type: string
+ *            password:
+ *              type: string
+ *     responses:
+ *       201:
+ *         description: Created
+ */
+
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     BasicAuth:
+ *       type: http
+ *       schema: basic
+ *     BearerAuth:
+ *       type: http
+ *       schema: bearer
+ *     ApiKeyAuth:
+ *       type: apiKey
+ *       in: headers
+ *       name: x-access-token	
+ *     OpenID:
+ *       type: openIdConnect
+ *       openIdConnectUrl: https://example.com/.well-known/openid-configuration
+ *     OAuth2:
+ *       type: oauth2
+ *       flows:
+ *         authorizationCode:
+ *           authorizationUrl: https://example.com/oauth/authorize
+ *           tokenUrl: https://example.com/oauth/token
+ *           scopes:
+ *             read: Grants read access
+ *             write: Grants write access
+ *             admin: Grants access to admin operations
+ */
+
+ /**
+   * @swagger
+   * /api/login:
+   *    post:
+   *        description: This API for authenticate users by typing username and password
+   *        consumes:
+   *        - application/json
+   *        produces:
+   *        - application/json
+   *        parameters:
+   *        - in: body
+   *          name: User cerdentials
+   *          schema:
+   *            $ref: '#/definitions/userCerdentials'
+   *        responses:
+   *            200:
+   *                description: everything is ok
+   *            400:
+   *                description: bad request
+   *            500:
+   *                description: internal server error
+   * definitions:
+   *     userCerdentials:
+   *        type: object
+   *        required:
+   *        - email
+   *        - password
+   *        properties:
+   *            email:
+   *                    type: string
+   *                    example: ahmed123
+   *            password:
+   *                    type: string
+   *                    example: 1234
+   */

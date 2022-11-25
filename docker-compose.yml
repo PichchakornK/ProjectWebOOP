@@ -1,0 +1,43 @@
+version: "3.9"
+services: 
+  numer-client:
+    build: ./react-numer-client
+    container_name: myapp-react-client
+    command: bash -c "npm start"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./react-numer-client:/numer/frontend/src/app
+    restart: always 
+    networks:
+      - app-network
+
+  numer-server:
+    build: ./numer-server
+    container_name: myapp-node-server
+    command: /numerapp/src/app/node_modules/.bin/nodemon index.js
+    ports:
+      - "1337:1337"
+    depends_on:
+      - mongo
+    volumes:
+      - ./numer-server:/numerapp/src/app
+    restart: always
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
+volumes:
+  mongo-data:
+    driver: local
+networks:
+    app-network:
+        driver: bridge
